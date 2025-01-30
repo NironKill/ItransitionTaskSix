@@ -1,0 +1,26 @@
+﻿.table-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.logout-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.btn.logout {
+    background-color: #ffc107;
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+    .btn.logout:hover {
+        background-color: #e0a800;
+    }

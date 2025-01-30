@@ -1,0 +1,53 @@
+﻿@model ICollection<PresentationModel> 
+
+@{
+    ViewData["Title"] = "Presentations";
+    string svgDataUri = string.Empty;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Presentation</title>
+        <link rel="stylesheet" href="~/css/manage.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div class="table-container">
+            <div class="text-center">
+                <h1 class="display-4">Collaborative Drawing Board</h1>
+
+                <div class="logout-container">
+                    <form asp-controller="Account" asp-action="Logout" method="post" style="display: inline;">
+                        <button type="submit" class="btn logout" id="logout-btn">Logout</button>
+                    </form>
+                </div>
+
+                <form asp-action="Create" asp-controller="Presentation" method="post">
+                    <input type="text" name="name" placeholder="Enter Presentation Name" required />
+                    <button type="submit" class="btn btn-success">Create New Presentation</button>
+                </form>
+
+                <h2>Recent Presentations</h2>
+                <div class="row">
+                    @foreach (var drawing in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">@drawing.Name</h5>
+                                    <p class="card-text">Created by @drawing.UserName</p>
+                                    <a href="@Url.Action("Board", "Presentation", new { id = drawing.Id })" class="btn btn-primary">Open</a>
+                                    <form action="@Url.Action("Delete", "Presentation", new { id = drawing.Id })" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
